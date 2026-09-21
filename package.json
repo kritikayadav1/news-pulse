@@ -1,0 +1,23 @@
+{
+  "name": "news-pulse",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "News Pulse: Python ingestion, Node.js API and a React news timeline.",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build --workspace frontend",
+    "start": "node backend/src/server.js",
+    "ingest": "node scripts/python.mjs scraper/main.py",
+    "demo": "node scripts/python.mjs scraper/main.py --demo",
+    "test": "node scripts/test.mjs"
+  }
+}

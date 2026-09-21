@@ -1,0 +1,12 @@
+node_modules/
+.venv/
+.env
+.env.*
+!.env.example
+data/
+frontend/dist/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+test-output/

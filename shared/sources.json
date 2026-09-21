@@ -1,0 +1,28 @@
+[
+  {
+    "id": "bbc",
+    "name": "BBC News",
+    "feed": "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "home": "https://www.bbc.com/news",
+    "domains": ["bbci.co.uk", "bbc.co.uk", "bbc.com"],
+    "color": "#d53c4f"
+  },
+  {
+    "id": "guardian",
+    "name": "The Guardian",
+    "feed": "https://www.theguardian.com/world/rss",
+    "home": "https://www.theguardian.com/world",
+    "domains": ["theguardian.com"],
+    "image_domains": ["guim.co.uk", "theguardian.com"],
+    "color": "#2563eb"
+  },
+  {
+    "id": "npr",
+    "name": "NPR",
+    "feed": "https://feeds.npr.org/1001/rss.xml",
+    "home": "https://www.npr.org/sections/news/",
+    "domains": ["npr.org"],
+    "image_domains": ["npr.org", "npr.brightspotcdn.com"],
+    "color": "#c46c10"
+  }
+]
