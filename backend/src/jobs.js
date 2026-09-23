@@ -88,8 +88,18 @@ export function createJobManager(db, pipelineScript = "scraper/main.py") {
           /* Non-JSON library output is not a progress event. */
         }
       });
-      child.stderr.on("data", () => {
-        /* Keep third-party diagnostics out of the public API. */
+      let stderrTail = "";
+      child.stderr.on("data", (chunk) => {
+        stderrTail = (stderrTail + chunk.toString()).slice(-16000);
+      });
+      child.once("close", (code, signal) => {
+        if (code === 0) return;
+        let diagnostic = stderrTail;
+        for (const secret of [process.env.DATABASE_URL, process.env.INGEST_TOKEN]) {
+          if (secret) diagnostic = diagnostic.split(secret).join("[redacted]");
+        }
+        diagnostic = diagnostic.replace(/(?:postgres(?:ql)?|https?):\/\/[^\s"'<>]+/gi, "[redacted URL]");
+        console.error(`[scraper] exit=${code} signal=${signal || "none"}\n${diagnostic}`);
       });
       async function finish(code) {
         if (finished) return;
