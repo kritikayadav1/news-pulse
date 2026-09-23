@@ -1,0 +1,14 @@
+services:
+  news-pulse:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: "3001"
+      DB_PATH: /app/data/news.db
+      AUTO_INGEST: "true"
+    volumes:
+      - news-data:/app/data
+    restart: unless-stopped
+volumes:
+  news-data:

@@ -1,0 +1,20 @@
+# Connect this repository in Render and supply a hosted PostgreSQL connection URL.
+# No paid resource is declared. Check the provider's current availability/limits.
+services:
+  - type: web
+    name: news-pulse
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: AUTO_INGEST
+        value: "true"
+      - key: MAX_ARTICLES_PER_FEED
+        value: "30"
+      - key: ARTICLE_WORKERS
+        value: "4"
+      - key: INGEST_COOLDOWN_SECONDS
+        value: "60"
